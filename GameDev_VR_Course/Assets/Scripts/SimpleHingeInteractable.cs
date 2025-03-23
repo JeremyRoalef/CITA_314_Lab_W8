@@ -7,10 +7,26 @@ public class SimpleHingeInteractable : XRSimpleInteractable
 {
     Transform grabHand;
 
+    [SerializeField]
+    bool isLocked = true;
+
+    public void UnlockHinge()
+    {
+        isLocked = false;
+    }
+
+    public void LockHinge()
+    {
+        isLocked = true;
+    }
+
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        base.OnSelectEntered(args);
-        grabHand = args.interactorObject.transform;
+        if (!isLocked)
+        {
+            base.OnSelectEntered(args);
+            grabHand = args.interactorObject.transform;
+        }
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)

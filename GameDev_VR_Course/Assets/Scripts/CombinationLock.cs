@@ -4,9 +4,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
 
 public class CombinationLock : MonoBehaviour
 {
+    public UnityAction UnlockAction;
+    void OnUnlocked() => UnlockAction?.Invoke();
+
+    public UnityAction LockAction;
+    void OnLocked() => LockAction?.Invoke();
+
     [SerializeField]
     string numberCombination = "0412";
 
@@ -73,6 +80,7 @@ public class CombinationLock : MonoBehaviour
         {
             //Debug.Log("You found the combination");
             isLocked = false;
+            OnUnlocked();
             for (int i = 0;i < comboButtons.Length; i++)
             {
                 comboButtons[i].GetComponent<ButtonInteractable>().interactionLayers = InteractionLayerMask.GetMask("Nothing");
@@ -82,6 +90,7 @@ public class CombinationLock : MonoBehaviour
         //Combination has not been found. Reset the string & flash the buttons red for user feedback
         else
         {
+            OnLocked();
             for(int i = 0; i < comboButtons.Length; i++)
             {
                 comboButtons[i].SetButtonColor(incorrectComboButtonColor);
