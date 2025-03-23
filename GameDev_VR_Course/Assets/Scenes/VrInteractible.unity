@@ -19489,11 +19489,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.697
+      value: 7.046
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.921
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41313,9 +41313,10 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  isLocked: 1
+  isLocked: 0
   doorTransform: {fileID: 4293244892535603703}
   comboLock: {fileID: 701791830}
+  rotationLimits: {x: 15, y: 0, z: 0}
 --- !u!54 &7232470889033644072
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -42763,9 +42764,10 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  isLocked: 1
+  isLocked: 0
   doorTransform: {fileID: 6097707997730157626}
   comboLock: {fileID: 701791830}
+  rotationLimits: {x: 15, y: 0, z: 0}
 --- !u!54 &8471264458306538214
 Rigidbody:
   m_ObjectHideFlags: 0
