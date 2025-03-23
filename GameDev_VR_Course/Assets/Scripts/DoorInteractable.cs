@@ -17,8 +17,10 @@ public class DoorInteractable : SimpleHingeInteractable
     Transform startRotation;
     float startAngleX;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         startRotation = transform;
         startAngleX = startRotation.localEulerAngles.x;
         if (startAngleX >= 180)

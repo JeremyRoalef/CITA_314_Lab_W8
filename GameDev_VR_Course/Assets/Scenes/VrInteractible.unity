@@ -20632,6 +20632,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  positionLimits: {x: 0, y: 0, z: 0}
   isLocked: 1
 --- !u!135 &1281104451
 SphereCollider:
@@ -41313,6 +41314,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  positionLimits: {x: 0.15, y: 0.15, z: 0.15}
   isLocked: 0
   doorTransform: {fileID: 4293244892535603703}
   comboLock: {fileID: 701791830}
@@ -42764,6 +42766,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  positionLimits: {x: 0.15, y: 0.15, z: 0.15}
   isLocked: 0
   doorTransform: {fileID: 6097707997730157626}
   comboLock: {fileID: 701791830}

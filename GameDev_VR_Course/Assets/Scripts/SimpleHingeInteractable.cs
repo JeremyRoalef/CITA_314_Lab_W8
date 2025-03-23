@@ -3,15 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 public class SimpleHingeInteractable : XRSimpleInteractable
 {
+    [SerializeField]
+    Vector3 positionLimits;
+
     Transform grabHand;
+    Collider hingeCollider;
+    Vector3 hingePositions;
+
 
     [SerializeField]
     bool isLocked = true;
 
     const string Default_Layer = "Default";
     const string Grab_Layer = "Grab";
+
+    protected virtual void Start()
+    {
+        hingeCollider = GetComponent<Collider>();
+
+    }
 
     public void UnlockHinge()
     {
@@ -39,12 +53,38 @@ public class SimpleHingeInteractable : XRSimpleInteractable
         ChangeLayerMask(Grab_Layer);
     }
 
+    void TrackHand()
+    {
+        transform.LookAt(grabHand, transform.forward);
+        hingePositions = hingeCollider.bounds.center;
+
+        if (grabHand.position.x >= hingePositions.x + positionLimits.x ||
+                   grabHand.position.x <= hingePositions.x - positionLimits.x)
+        {
+            ReleaseHinge();
+            Debug.Log("****RELEASE HINGE X");
+        }
+        else if (grabHand.position.y >= hingePositions.y + positionLimits.y ||
+            grabHand.position.y <= hingePositions.y - positionLimits.y)
+        {
+            ReleaseHinge();
+            Debug.Log("****RELEASE HINGE Y");
+        }
+        else if (grabHand.position.z >= hingePositions.z + positionLimits.z ||
+            grabHand.position.z <= hingePositions.z - positionLimits.z)
+        {
+            ReleaseHinge();
+            Debug.Log("****RELEASE HINGE Z");
+        }
+
+    }
+
     //Virtual b/c of DoorInteractable
     protected virtual void Update()
     {
         if (grabHand != null)
         {
-            transform.LookAt(grabHand, transform.forward);
+            TrackHand();
         }
     }
 
