@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ButtonInteractable : XRSimpleInteractable
 {
+    //Serialized Fields
     [SerializeField]
     Color[] buttonColors = new Color[4];
 
     [SerializeField]
     Image buttonImage;
 
+    //Cashe References
     Color buttonNormalColor;
     Color buttonHighlightedColor;
     Color buttonPressedColor;
     Color buttonSelectedColor;
 
+    //Attributes
     bool isPressed;
 
     protected override void Awake()
@@ -69,11 +70,13 @@ public class ButtonInteractable : XRSimpleInteractable
         buttonImage.color = buttonSelectedColor;
     }
 
+    //Public method to set color to its normal color
     public void SetColorToNormal()
     {
         SetButtonColor(buttonNormalColor);
     }
 
+    //Public method to set color to given color
     public void SetButtonColor(Color newColor)
     {
         buttonImage.color = newColor;

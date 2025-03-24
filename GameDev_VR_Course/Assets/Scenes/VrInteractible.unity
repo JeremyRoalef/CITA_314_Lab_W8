@@ -63821,7 +63821,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   positionLimits: {x: 0.15, y: 0.15, z: 0.15}
-  isLocked: 0
+  isLocked: 1
   OnOpen:
     m_PersistentCalls:
       m_Calls: []
@@ -65389,7 +65389,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   positionLimits: {x: 0.15, y: 0.15, z: 0.15}
-  isLocked: 0
+  isLocked: 1
   OnOpen:
     m_PersistentCalls:
       m_Calls: []

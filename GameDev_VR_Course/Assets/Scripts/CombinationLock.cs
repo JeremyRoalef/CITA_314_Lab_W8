@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -8,11 +5,26 @@ using UnityEngine.Events;
 
 public class CombinationLock : MonoBehaviour
 {
+    //Actions. Unlike UnityEvent, UnityAction is more specific to scripting purposes only
     public UnityAction UnlockAction;
     void OnUnlocked() => UnlockAction?.Invoke();
+    /*
+     void OnUnlocked(){
+        UnlockAction?.Invoke();
+    }
+     */
 
     public UnityAction LockAction;
     void OnLocked() => LockAction?.Invoke();
+    /*
+     void OnLocked(){
+        LockAction?.Invoke();
+    }
+     */
+
+
+    //SerializedFields
+    [Header("Combo Lock Properties")]
 
     [SerializeField]
     string numberCombination = "0412";
@@ -26,26 +38,32 @@ public class CombinationLock : MonoBehaviour
     [SerializeField]
     bool isLocked = true;
 
+    [Header("Colors")]
+
     [SerializeField]
     Color unlockedButtonColor = Color.green;
 
     [SerializeField]
     Color incorrectComboButtonColor = Color.red;
 
-    const string Default_Input_Text = "0000";
+    //Attributes
+    const string DEFAULT_INPUT_TEXT = "0000";
     string userInput = "";
 
-    private void Start()
+    //Called on first frame update
+    void Start()
     {
+        //Tell all the combo buttons to listen to a method when they are selected
         for (int i = 0; i < comboButtons.Length; i++)
         {
             comboButtons[i].selectEntered.AddListener(OnComboButtonPressed);
         }
 
-        textInput.text = Default_Input_Text;
+        //Set input text to default
+        textInput.text = DEFAULT_INPUT_TEXT;
     }
 
-    private void OnComboButtonPressed(SelectEnterEventArgs arg0)
+    void OnComboButtonPressed(SelectEnterEventArgs arg0)
     {
         //Use SelectEnterEventArgs
         for (int i = 0; i < comboButtons.Length; i++)
@@ -59,15 +77,13 @@ public class CombinationLock : MonoBehaviour
                 {
                     CheckCombination();
                 }
-
             }
-
             //Reset the color of other objects to normal color when button is pressed
             comboButtons[i].SetColorToNormal();
         }
     }
 
-    private void CheckCombination()
+    void CheckCombination()
     {
         //Check if the combination is correct. If it is, prevent the buttons from being interacted with,
         //isLocked is false, & set the button colors to a green color for user feedback
@@ -100,16 +116,18 @@ public class CombinationLock : MonoBehaviour
         }
     }
 
+    //Invoked method to reset the combination when the user enters invalid combo
     void ResetCombination()
     {
         for (int i = 0; i < comboButtons.Length; i++)
         {
             comboButtons[i].SetColorToNormal();
         }
-        textInput.text = Default_Input_Text;
+        textInput.text = DEFAULT_INPUT_TEXT;
         userInput = string.Empty;
     }
 
+    //Invoked method to set the button colors to the unlocked color when the user enters a valid combo
     void SetButtonsToUnlockedColor()
     {
         for (int i = 0; i < comboButtons.Length; i++)
