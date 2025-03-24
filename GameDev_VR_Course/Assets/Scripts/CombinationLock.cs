@@ -32,7 +32,7 @@ public class CombinationLock : MonoBehaviour
     [SerializeField]
     Color incorrectComboButtonColor = Color.red;
 
-    const string defaultInputText = "0000";
+    const string Default_Input_Text = "0000";
     string userInput = "";
 
     private void Start()
@@ -42,7 +42,7 @@ public class CombinationLock : MonoBehaviour
             comboButtons[i].selectEntered.AddListener(OnComboButtonPressed);
         }
 
-        textInput.text = defaultInputText;
+        textInput.text = Default_Input_Text;
     }
 
     private void OnComboButtonPressed(SelectEnterEventArgs arg0)
@@ -106,7 +106,7 @@ public class CombinationLock : MonoBehaviour
         {
             comboButtons[i].SetColorToNormal();
         }
-        textInput.text = defaultInputText;
+        textInput.text = Default_Input_Text;
         userInput = string.Empty;
     }
 
